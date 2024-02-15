@@ -94,6 +94,22 @@ module.exports = (sequelize) => {
     documentation: {
       type: DataTypes.STRING,
     },
+    isForSale: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    isForRent: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    isFinished: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    isUnderDevelopment: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
   });
 
   return Property;
