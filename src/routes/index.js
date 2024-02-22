@@ -12,6 +12,7 @@ const { getPropertyByTypeHandler } = require('../handlers/getPropertyByTipeHandl
 const { getPropertyByLocationHandler } = require('../handlers/getPropertyByLocationHandler')
 const { filterPropertiesHandler } = require('../handlers/filterPropertiesHandler')
 const loginController = require('../controllers/loginController')
+const{ getSellerByIdHandler } = require('../handlers/getSellerByIdHandler')
 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -31,6 +32,7 @@ router.get('/property/name/:title', getPropertyByTitleHandler);
 router.get('/property/type/:propertyType', getPropertyByTypeHandler);
 router.get('/property/location/:location', getPropertyByLocationHandler);
 router.get('/sellers', getAllSellersHandler);
+router.get('/seller/:id', getSellerByIdHandler);
 router.get('/users', getAllUsersHandler);
 router.get('/user/:id', getUserByIdHandler);
 router.get('/properties/filter', filterPropertiesHandler);
