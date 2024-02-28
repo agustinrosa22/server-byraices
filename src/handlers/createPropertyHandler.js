@@ -26,7 +26,8 @@ const createPropertyHandler = async (req, res) => {
             description,
             floorPlans,
             documentation,
-            sellerId
+            sellerId,
+            userId,
         } = req.body;
 
         const newProperty = await createProperty({
@@ -53,7 +54,8 @@ const createPropertyHandler = async (req, res) => {
             description,
             floorPlans,
             documentation,
-            sellerId
+            sellerId,
+            userId,
         });
 
         res.status(201).json({

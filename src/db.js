@@ -42,7 +42,7 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 // Destructuring para acceder a los modelos
-const { Seller, Property, Martiller } = sequelize.models;
+const { Seller, Property, Martiller, User} = sequelize.models;
 
 // Aca vendrian las relaciones
 
@@ -53,6 +53,10 @@ Property.belongsTo(Seller, { foreignKey: 'sellerId' });
 // Relacionar vendedores a martilleros
 Martiller.hasMany(Seller, { as: 'sellers', foreignKey: 'martillerId' });
 Seller.belongsTo(Martiller, { foreignKey: 'martillerId' });
+
+// Relacionar usuarios a propiedades
+User.hasMany(Property, { as: 'properties', foreignKey: 'userId' });
+Property.belongsTo(User, { foreignKey: 'userId' });
 
 // Exportar modelos y conexión
 module.exports = {
