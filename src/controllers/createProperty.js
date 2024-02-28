@@ -25,6 +25,7 @@ const createProperty = async ({
     description,
     floorPlans,
     documentation,
+    sellerId
 }) => {
     const created = await Property.create({
         propertyType,
@@ -50,6 +51,7 @@ const createProperty = async ({
         description,
         floorPlans,
         documentation,
+        sellerId
     });
     return created;
 };
