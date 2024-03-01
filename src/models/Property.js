@@ -16,12 +16,18 @@ module.exports = (sequelize) => {
       type: DataTypes.JSON,
       defaultValue: {},
     },
+    currency: {
+      type: DataTypes.STRING,
+    },
     price: {
-      type: DataTypes.DECIMAL(10, 2),
+      type: DataTypes.STRING,
       allowNull: false,
     },
+    currencyExpenses: {
+      type: DataTypes.STRING,
+    },
     expenses: {
-      type: DataTypes.DECIMAL(10, 2),
+      type: DataTypes.STRING,
     },
     totalSquareMeters: {
       type: DataTypes.INTEGER,
@@ -29,12 +35,27 @@ module.exports = (sequelize) => {
     coveredSquareMeters: {
       type: DataTypes.INTEGER,
     },
+    semiCoveredSquareMeters: {
+      type: DataTypes.INTEGER,
+    },
+    uncovered: {
+      type: DataTypes.INTEGER,
+    },
+    land: {
+      type: DataTypes.INTEGER,
+    },
     age: {
       type: DataTypes.INTEGER,
+    },
+    commissionSellerType: {
+      type: DataTypes.STRING,
     },
     sellerCommission: {
       type: DataTypes.DECIMAL(5, 2),
       allowNull: false,
+    },
+    commissionBuyerType: {
+      type: DataTypes.STRING,
     },
     buyerCommission: {
       type: DataTypes.DECIMAL(5, 2),
@@ -59,17 +80,49 @@ module.exports = (sequelize) => {
         return formattedDate;
       },
     },
+    street: {
+      type: DataTypes.STRING,
+    },
+    number: {
+      type: DataTypes.STRING,
+    },
+    country: {
+      type: DataTypes.STRING,
+    },
+    province: {
+      type: DataTypes.STRING,
+    },
+    departments: {
+      type: DataTypes.STRING,
+    },
+    locality: {
+      type: DataTypes.STRING,
+    },
+    neighborhood: {
+      type: DataTypes.STRING,
+    },
+    privateNeighborhood: {
+      type: DataTypes.STRING,
+    },
     location: {
       type: DataTypes.STRING,
     },
-    surface: {
+    environments: {
+      type: DataTypes.STRING,
+    },
+    rooms: {
+      type: DataTypes.STRING,
+    },
+    bathrooms: {
+      type: DataTypes.STRING,
+    },
+    toilettes: {
+      type: DataTypes.STRING,
+    },
+    garages: {
       type: DataTypes.STRING,
     },
     propertyState: {
-      type: DataTypes.JSON,
-      defaultValue: {},
-    },
-    roomsOptions: {
       type: DataTypes.JSON,
       defaultValue: {},
     },
@@ -106,7 +159,39 @@ module.exports = (sequelize) => {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
-    isUnderDevelopment: {
+    exclusiveContract: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    cartel: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    financing: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    suitableCredit: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    commercialSuitable: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    professionalSuitable: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    suitableForReducedMobility: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    pozo: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    CountryOrPrivateNeighborhood: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
