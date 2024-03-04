@@ -126,14 +126,6 @@ module.exports = (sequelize) => {
       type: DataTypes.JSON,
       defaultValue: {},
     },
-    amenitiesOptions: {
-      type: DataTypes.JSON,
-      defaultValue: {},
-    },
-    servicesOptions: {
-      type: DataTypes.JSON,
-      defaultValue: {},
-    },
     title: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -195,6 +187,89 @@ module.exports = (sequelize) => {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
+    amenities: {
+        type: DataTypes.JSON,
+        defaultValue: {
+      aireAcondicionado:false,
+      portonAutomatico: false,
+      gimnasio:false,
+      losaRadiante:false,
+      chimenea:false,
+      hidromasaje:false,
+      seguridad:false,
+      pileta:false,
+      caldera:false,
+      businessCenter:false,
+      areaCine:false,
+      cisterna: false,
+      laundry:false,
+      estacionamientoVisitas: false,
+      ascensor:false,
+      salonUsosMultiples: false,
+      areaDeJuegosInfantiles: false,
+      canchaTenis:false,
+      recepcion:false,
+      areasVerdes:false,
+      valetParking:false,
+      canchaBasquetbol:false,
+      canchaFutbol: false,
+      canchaPaddle:false,
+      solarium:false,
+      jardinDeInvierno:false,
+      piletaCubierta: false,
+      piletaClimatizada:false,
+      sauna:false,
+      bar: false,
+      calefaccion: false,
+      // Agrega más amenidades aquí según sea necesario
+    }
+  },
+  environmentsOptions: {
+    type: DataTypes.JSON,
+    defaultValue: {
+  dormitorio:false,
+  comedor: false,
+  vestidor:false,
+  jardin:false,
+  baño:false,
+  cocina:false,
+  living:false,
+  patio:false,
+  terraza:false,
+  estudio:false,
+  lavadero:false,
+  altillo:false,
+  playroom:false,
+  lobby:false,
+  quincho:false,
+  salaDeReuniones:false, 
+  balcon:false,
+  pileta:false,
+  cocina:false,
+  toilette:false,
+  habitacion:false,
+  living:false,
+  otro: false,
+  // Agrega más amenidades aquí según sea necesario
+}
+},
+services: {
+  type: DataTypes.JSON,
+  defaultValue: {
+electricidad:false,
+agua:false,
+gas:false,
+internet:false,
+telefono:false,
+desagueCloacal:false,
+televisionPorCable:false,
+alarma:false,
+televisionSatelital:false,
+aguaCorriente:false,
+// Agrega más amenidades aquí según sea necesario
+}
+},
+    
   });
 
   return Property;
