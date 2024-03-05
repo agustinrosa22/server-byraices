@@ -12,9 +12,9 @@ module.exports = (sequelize) => {
     videoLink: {
       type: DataTypes.STRING,
     },
-    status: {
-      type: DataTypes.JSON,
-      defaultValue: {},
+    statusProperty: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
     },
     currency: {
       type: DataTypes.STRING,
@@ -124,7 +124,16 @@ module.exports = (sequelize) => {
     },
     propertyState: {
       type: DataTypes.JSON,
-      defaultValue: {},
+      defaultValue: {
+        aEstrenar: false,
+        enConstruccion: false,
+        refaccionado: false,
+        aRefaccionar: false,
+        excelente: false,
+        muyBueno: false,
+        bueno: false,
+        regular: false,
+      },
     },
     title: {
       type: DataTypes.STRING,
@@ -147,45 +156,74 @@ module.exports = (sequelize) => {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
+    isUnderDevelopment: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
     isFinished: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
-    exclusiveContract: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
+    detailsProperty: {
+      type: DataTypes.JSON,
+      defaultValue: {
+        exclusiveContract: false,
+        cartel: false,
+        financing: false,
+        suitableCredit: false,
+        commercialSuitable: false,
+        professionalSuitable: false,
+        suitableForReducedMobility: false,
+        pozo: false,
+        CountryOrPrivateNeighborhood: false,
+      }
     },
-    cartel: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
-    },
-    financing: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
-    },
-    suitableCredit: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
-    },
-    commercialSuitable: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
-    },
-    professionalSuitable: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
-    },
-    suitableForReducedMobility: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
-    },
-    pozo: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
-    },
-    CountryOrPrivateNeighborhood: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
+
+    characteristics: {
+      type: DataTypes.JSON,
+      defaultValue: {
+        placard: false,
+        parilla: false,
+        desayunador: false, 
+        orientacionSur: false,
+        orientacionOeste: false,
+        orientacionNorte: false,
+        orientacionEste: false,
+        accesoDeCocheraRampaFija: false,
+        accesoDeCocheraRampaMovil: false,
+        accesoDeCocheraAscensor: false,
+        accesoDeCocheraHorizontal: false,
+        disposicionContrafrente: false,
+        disposicionFrente: false,
+        disposicionInterno: false,
+        disposicionLateral: false,
+        amoblado: false,
+        orientacionNoroeste: false, 
+        orientacionNoreste: false,
+        orientacionSuroeste: false,
+        orientacionSureste: false,
+        deck: false,
+        tipoDeCampoOtro: false,
+        tipoDeCampoFruticula: false,
+        tipoDeCampoAgricola: false,
+        tipoDeCampoChara: false,
+        tipoDeCampoCriadero: false,
+        tipoDeCampoTambero: false,
+        tipoDeCampoFloricultura: false,
+        tipoDeCampoForestal: false,
+        tipoDeCampoGanadero: false,
+        tipoDeCampoHaras: false,
+        bodegas: false,
+        tipoDeBodegaComercial: false,
+        tipoDeBodegaNaveIndustrial: false,
+        tipoDeBodegaAlmacen: false,
+        biblioteca: false,
+        galpon: false,
+        sotano: false,
+        baulera: false,
+        permiteMascota: false,
+        aptoTuristico: false,
+      }
     },
     amenities: {
         type: DataTypes.JSON,
