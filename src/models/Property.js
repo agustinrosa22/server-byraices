@@ -7,7 +7,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     photo: {
-      type: DataTypes.STRING,
+      type: DataTypes.ARRAY(DataTypes.STRING),
     },
     videoLink: {
       type: DataTypes.STRING,
@@ -105,7 +105,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
     },
     location: {
-      type: DataTypes.STRING,
+      type: DataTypes.ARRAY(DataTypes.STRING),
     },
     environments: {
       type: DataTypes.STRING,
