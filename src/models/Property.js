@@ -146,7 +146,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
     },
     documentation: {
-      type: DataTypes.STRING,
+      type: DataTypes.ARRAY(DataTypes.STRING),
     },
     isForSale: {
       type: DataTypes.BOOLEAN,
