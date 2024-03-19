@@ -42,7 +42,7 @@ router.get('/user/:id', getUserByIdHandler);
 router.get('/properties/filter', filterPropertiesHandler);
 router.get('/properties/active', getActiveProperties);
 router.get('/properties/active/sale', getActivePropertiesForSale);
-router.get('/properties/active/sale', getActivePropertiesForSale);
+router.get('/properties/active/rent', getActivePropertiesForRent);
 
 //PUT
 router.put('/properties/edit/:id', updateProperty);
