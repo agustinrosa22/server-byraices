@@ -12,8 +12,11 @@ const { getPropertyByTypeHandler } = require('../handlers/getPropertyByTipeHandl
 const { getPropertyByLocationHandler } = require('../handlers/getPropertyByLocationHandler')
 const { filterPropertiesHandler } = require('../handlers/filterPropertiesHandler')
 const loginController = require('../controllers/loginController')
-const{ getSellerByIdHandler } = require('../handlers/getSellerByIdHandler')
-
+const { getSellerByIdHandler } = require('../handlers/getSellerByIdHandler')
+const { updateProperty } = require('../controllers/editProperty')
+const { getActiveProperties } = require('../controllers/getActiveProperties')
+const { getActivePropertiesForSale  } = require('../controllers/getActivePropertiesForSale')
+const { getActivePropertiesForRent } = require('../controllers/getActivePropertiesForRent')
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -25,6 +28,7 @@ router.post('/user/', createUserHandler);
 router.post('/property', createPropertyHandler);
 router.post('/seller', createUserSellerHandler);
 router.post('/login', loginController.login);
+
 //GET
 router.get('/properties', getAllPropertiesHandler);
 router.get('/property/:id', getPropertyByIdHandler);
@@ -36,7 +40,11 @@ router.get('/seller/:id', getSellerByIdHandler);
 router.get('/users', getAllUsersHandler);
 router.get('/user/:id', getUserByIdHandler);
 router.get('/properties/filter', filterPropertiesHandler);
+router.get('/properties/active', getActiveProperties);
+router.get('/properties/active/sale', getActivePropertiesForSale);
+router.get('/properties/active/sale', getActivePropertiesForSale);
 
-
+//PUT
+router.put('/properties/edit/:id', updateProperty);
 
 module.exports = router;
