@@ -29,6 +29,7 @@ module.exports = (sequelize) => {
     type: {
       type: DataTypes.STRING,
       allowNull: false,
+      defaultValue: "Vendedor",
     },
     status: {
       type: DataTypes.BOOLEAN,

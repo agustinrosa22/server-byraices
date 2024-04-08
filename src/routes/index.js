@@ -17,6 +17,9 @@ const { updateProperty } = require('../controllers/editProperty')
 const { getActiveProperties } = require('../controllers/getActiveProperties')
 const { getActivePropertiesForSale  } = require('../controllers/getActivePropertiesForSale')
 const { getActivePropertiesForRent } = require('../controllers/getActivePropertiesForRent')
+const { createUserAdminrHandler } = require('../handlers/createAdminHandler')
+const { createUserMartillerHandler } = require('../handlers/createMartillerHandler')
+const { getPropertiesBySellerId } = require('../controllers/getPropertiesBySellerId')
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -43,6 +46,7 @@ router.get('/properties/filter', filterPropertiesHandler);
 router.get('/properties/active', getActiveProperties);
 router.get('/properties/active/sale', getActivePropertiesForSale);
 router.get('/properties/active/rent', getActivePropertiesForRent);
+router.get('/properties/seller/:sellerId', getPropertiesBySellerId);
 
 //PUT
 router.put('/properties/edit/:id', updateProperty);
