@@ -20,6 +20,7 @@ const { getActivePropertiesForRent } = require('../controllers/getActiveProperti
 const { createUserAdminrHandler } = require('../handlers/createAdminHandler')
 const { createUserMartillerHandler } = require('../handlers/createMartillerHandler')
 const { getPropertiesBySellerId } = require('../controllers/getPropertiesBySellerId')
+const { getPropertiesBySellerIdHandler } = require('../handlers/getPropertiesBySellerIdHandler');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 

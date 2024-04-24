@@ -42,9 +42,21 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 // Destructuring para acceder a los modelos
-const { Seller, Property, Martiller, User} = sequelize.models;
+const { Seller, Property, Martiller, User, Franquicia} = sequelize.models;
 
 // Aca vendrian las relaciones
+
+// Relacionar Franquicia con Martiller (un Martiller puede tener varias franquicias)
+Franquicia.hasMany(Martiller, { as: 'martillers', foreignKey: 'franquiciaId' });
+Martiller.belongsTo(Franquicia, { foreignKey: 'franquiciaId' });
+
+// Relacionar Franquicia con Seller (una Franquicia puede tener varios Sellers)
+Franquicia.hasMany(Seller, { as: 'sellers', foreignKey: 'franquiciaId' });
+Seller.belongsTo(Franquicia, { foreignKey: 'franquiciaId' });
+
+// Relacionar Franquicia con Property (una Franquicia puede tener varias propiedades)
+Franquicia.hasMany(Property, { as: 'properties', foreignKey: 'franquiciaId' });
+Property.belongsTo(Franquicia, { foreignKey: 'franquiciaId' });
 
 // Relacionar propiedades a vendedores
 Seller.hasMany(Property, { as: 'properties', foreignKey: 'sellerId' });
