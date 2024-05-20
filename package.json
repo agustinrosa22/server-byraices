@@ -5,9 +5,13 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./index.js",
-    "test": "mocha -w ./tests/**/*.spec.js"
+    "test": "mocha -w ./tests/**/*.spec.js",
+    "build": "npm run clean && npm run setup && npm run copy",
+    "clean": "rm -rf build/*",
+    "setup": "echo 'Setting up the environment for production'",
+    "copy": "mkdir -p build && cp -r index.js src config public package.json build/"
   },
-  "author": "CodeSites",
+  "author": "Agustin Rosa",
   "license": "ISC",
   "engines": {
     "node": ">=12.18.3",

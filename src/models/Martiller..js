@@ -35,6 +35,10 @@ module.exports = (sequelize) => {
       allowNull: false,
       defaultValue: true,
     },
+    matricula: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   });
 
   return Martiller;

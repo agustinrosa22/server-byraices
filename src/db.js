@@ -42,7 +42,7 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 // Destructuring para acceder a los modelos
-const { Seller, Property, Martiller, User, Franquicia} = sequelize.models;
+const { Seller, Property, Martiller, User, Franquicia, UserSeller, Office} = sequelize.models;
 
 // Aca vendrian las relaciones
 
@@ -69,6 +69,31 @@ Seller.belongsTo(Martiller, { foreignKey: 'martillerId' });
 // Relacionar usuarios a propiedades
 User.hasMany(Property, { as: 'properties', foreignKey: 'userId' });
 Property.belongsTo(User, { foreignKey: 'userId' });
+
+// Office puede tener muchas propiedades
+Office.hasMany(Property, { as: 'properties', foreignKey: 'officeId' });
+Property.belongsTo(Office, { foreignKey: 'officeId' });
+
+// Office puede tener varios martilleros
+Office.hasMany(Martiller, { as: 'martillers', foreignKey: 'officeId' });
+Martiller.belongsTo(Office, { foreignKey: 'officeId' });
+
+// Office puede tener varios agentes/vendedores
+Office.hasMany(Seller, { as: 'sellers', foreignKey: 'officeId' });
+Seller.belongsTo(Office, { foreignKey: 'officeId' });
+
+// Office puede tener varios usuarios
+Office.hasMany(User, { as: 'users', foreignKey: 'officeId' });
+User.belongsTo(Office, { foreignKey: 'officeId' });
+
+// Office puede tener varias franquicias
+Office.hasMany(Franquicia, { as: 'franquicias', foreignKey: 'officeId' });
+Franquicia.belongsTo(Office, { foreignKey: 'officeId' });
+
+// Office puede tener varios UserSeller
+Office.hasMany(UserSeller, { as: 'userSellers', foreignKey: 'officeId' });
+UserSeller.belongsTo(Office, { foreignKey: 'officeId' });
+
 
 // Exportar modelos y conexión
 module.exports = {
