@@ -4,7 +4,7 @@ const { Seller } = require('../db').conn.models;
 // Editar los datos de un usuario por ID
 const updateSellerById = async (req, res) => {
     const { id } = req.params;
-    const { mail, password, name, last_name, phone_number, photo, type, status, officeId } = req.body;
+    const { mail, password, name, last_name, phone_number, photo, type, status, officeId, martillerId, franquiciaId } = req.body;
   
     try {
       // Buscar el vendedor por ID
@@ -24,6 +24,8 @@ const updateSellerById = async (req, res) => {
       if (type !== undefined) seller.type = type;
       if (status !== undefined) seller.status = status;
       if (officeId !== undefined) seller.officeId = officeId;
+      if (martillerId !== undefined) seller.martillerId = martillerId;
+      if (franquiciaId !== undefined) seller.franquiciaId = franquiciaId;
   
       // Guardar los cambios
       await seller.save();

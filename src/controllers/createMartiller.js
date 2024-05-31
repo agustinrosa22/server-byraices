@@ -9,6 +9,7 @@ const createMartiller = async ({
     phone_number,
     img,
     type,
+    matricula,
 }) => {
     const created = await Martiller.create({
         mail,
@@ -18,6 +19,7 @@ const createMartiller = async ({
         phone_number,
         img,
         type,
+        matricula
     })
     return created
 }

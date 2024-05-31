@@ -4,7 +4,7 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
-  DB_USER, DB_PASSWORD, DB_HOST
+  DB_USER, DB_PASSWORD, DB_HOST, DB_DEPLOY, DB_PORT, DB_NAME
 } = process.env;
 
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/byraices`, {
@@ -13,6 +13,23 @@ const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}
   operatorsAliases: false,
 });
 
+// const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
+//   host: DB_HOST,
+//   dialect: 'mysql',
+//   user: DB_USER,
+//   password: DB_PASSWORD,
+//   database: DB_NAME
+// });
+
+
+// Prueba de conexión
+sequelize.authenticate()
+  .then(() => {
+    console.log('Conectado a la base de datos.');
+  })
+  .catch(err => {
+    console.error('No se pudo conectar a la base de datos:', err);
+  });
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
