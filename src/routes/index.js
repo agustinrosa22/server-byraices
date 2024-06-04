@@ -28,6 +28,8 @@ const { updateSellerById } = require('../controllers/updateSellerById')
 const { getMartillerBySellerId } = require('../controllers/getMatillerBySellerId')
 const { updateMartiller } = require('../controllers/editMartiller')
 const { getAllMartillers } = require('../controllers/getAllMartillers')
+const { updateSeller } = require('../controllers/editSeller')
+const { updateOffice } = require('../controllers/updateOffice')
 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -64,9 +66,10 @@ router.get('/martiller/seller/:sellerId', getMartillerBySellerId);
 router.get('/all/martillers', getAllMartillers) 
 
 //PUT
-router.put('/properties/edit/:id', updateProperty);
+router.put('/properties/:id', updateProperty);
 router.put('/sellers/:id', updateSellerById);
 router.put('/martiller/:id', updateMartiller);
-
+router.put('/seller/:id', updateSeller);
+router.put('/office/:id', updateOffice);
 
 module.exports = router;
