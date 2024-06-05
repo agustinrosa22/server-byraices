@@ -307,6 +307,14 @@ aguaCorriente:false,
 // Agrega más amenidades aquí según sea necesario
 }
 },
+martillerId: {
+  type: DataTypes.INTEGER,
+  allowNull: true,
+  references: {
+    model: 'Martillers', // nombre del modelo Martiller
+    key: 'id',
+  }
+},
     
   });
 

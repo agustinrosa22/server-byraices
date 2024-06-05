@@ -111,6 +111,10 @@ Franquicia.belongsTo(Office, { foreignKey: 'officeId' });
 Office.hasMany(UserSeller, { as: 'userSellers', foreignKey: 'officeId' });
 UserSeller.belongsTo(Office, { foreignKey: 'officeId' });
 
+// Relacionar propiedades a martilleros
+Martiller.hasMany(Property, { as: 'properties', foreignKey: 'martillerId' });
+Property.belongsTo(Martiller, { foreignKey: 'martillerId' });
+
 
 // Exportar modelos y conexión
 module.exports = {
