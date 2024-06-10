@@ -1,13 +1,46 @@
+const { Op } = require('sequelize');
 const { Property } = require('../db').conn.models;
 
 const getActivePropertiesForSale = async (req, res) => {
   try {
-    // Buscar todas las propiedades que tengan "statusProperty" y "isForSale" como true
-    const activePropertiesForSale = await Property.findAll({
-      where: {
-        statusProperty: true,
-        isForSale: true
+    // Obtener los parámetros de consulta
+    const { province, departments, country, minPrice, maxPrice, currency } = req.query;
+
+    // Construir las condiciones de búsqueda
+    let conditions = {
+      statusProperty: true,
+      isForSale: true
+    };
+
+    if (province) {
+      conditions.province = province;
+    }
+
+    if (departments) {
+      conditions.departments = departments;
+    }
+
+    if (country) {
+      conditions.country = country;
+    }
+
+    if (minPrice || maxPrice) {
+      conditions.price = {};
+      if (minPrice) {
+        conditions.price[Op.gte] = minPrice;
       }
+      if (maxPrice) {
+        conditions.price[Op.lte] = maxPrice;
+      }
+    }
+
+    if (currency) {
+      conditions.currency = currency;
+    }
+
+    // Buscar todas las propiedades que cumplan con las condiciones
+    const activePropertiesForSale = await Property.findAll({
+      where: conditions
     });
 
     // Devolver la lista de propiedades activas para la venta

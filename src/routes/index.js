@@ -61,6 +61,7 @@ router.get('/user/:id', getUserByIdHandler);
 router.get('/properties/filter', filterPropertiesHandler);
 router.get('/properties/active', getActiveProperties);
 router.get('/properties/active/sale', getActivePropertiesForSale);
+//GET /api/properties/active/sale?province=ProvinceName&departments=DepartmentName&country=CountryName&minPrice=1000&maxPrice=5000&currency=USD
 router.get('/properties/active/rent', getActivePropertiesForRent);
 router.get('/properties/seller/:sellerId', getPropertiesBySellerId);
 router.get('/allOfice', getAllOffices)
