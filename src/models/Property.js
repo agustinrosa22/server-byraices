@@ -4,7 +4,6 @@ module.exports = (sequelize) => {
   const Property = sequelize.define('Property', {
     propertyType: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
     photo: {
       type: DataTypes.ARRAY(DataTypes.STRING),
@@ -21,7 +20,6 @@ module.exports = (sequelize) => {
     },
     price: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
     currencyExpenses: {
       type: DataTypes.STRING,
@@ -52,7 +50,6 @@ module.exports = (sequelize) => {
     },
     sellerCommission: {
       type: DataTypes.DECIMAL(5, 2),
-      allowNull: false,
     },
     commissionBuyerType: {
       type: DataTypes.STRING,
@@ -137,7 +134,6 @@ module.exports = (sequelize) => {
     },
     title: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
     description: {
       type: DataTypes.TEXT,
