@@ -32,6 +32,7 @@ const { updateSeller } = require('../controllers/editSeller')
 const { updateOffice } = require('../controllers/updateOffice')
 const { getPropertiesByMartillerId } = require('../controllers/getPropertiesByMartillerId')
 const { getMartillerById } = require('../controllers/getMartillerById')
+const { getActivePropertiesDesarrollo } = require('../controllers/getActivePropertiesDesarrollo')
 
 
 // Importar todos los routers;
@@ -70,6 +71,7 @@ router.get('/martiller/seller/:sellerId', getMartillerBySellerId);
 router.get('/all/martillers', getAllMartillers)
 router.get('/properties/martiller/:martillerId', getPropertiesByMartillerId); 
 router.get('/martiller/:id', getMartillerById)
+router.get('/properties/active/pozo', getActivePropertiesDesarrollo);
 
 
 //PUT
