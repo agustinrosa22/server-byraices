@@ -12,8 +12,13 @@ const getPropertiesBySellerId = async (req, res) => {
       return res.status(400).json({ success: false, message: 'sellerId is required' });
     }
 
-    // Buscar todas las propiedades relacionadas con el sellerId proporcionado
-    const properties = await Property.findAll({ where: { sellerId } });
+    // Buscar todas las propiedades relacionadas con el sellerId proporcionado y con statusProperties: true
+    const properties = await Property.findAll({
+      where: {
+        sellerId,
+        statusProperties: true,  // Agregar condición para statusProperties
+      },
+    });
 
     // Si no se encuentran propiedades, devolver un mensaje
     if (!properties || properties.length === 0) {
