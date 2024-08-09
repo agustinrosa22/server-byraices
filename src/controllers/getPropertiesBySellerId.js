@@ -16,7 +16,7 @@ const getPropertiesBySellerId = async (req, res) => {
     const properties = await Property.findAll({
       where: {
         sellerId,
-        statusProperties: true,  // Agregar condición para statusProperties
+        statusProperty: true,  // Agregar condición para statusProperties
       },
     });
 
