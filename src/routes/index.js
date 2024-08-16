@@ -20,6 +20,7 @@ const { getActivePropertiesForRent } = require('../controllers/getActiveProperti
 const { createUserAdminrHandler } = require('../handlers/createAdminHandler')
 const { createUserMartillerHandler } = require('../handlers/createMartillerHandler')
 const { getPropertiesBySellerId } = require('../controllers/getPropertiesBySellerId')
+const {getPropertiesBySellerIdTrue} = require('../controllers/getPropertiesBySellerIdTrue')
 const { getPropertiesBySellerIdHandler } = require('../handlers/getPropertiesBySellerIdHandler');
 const { createOffice } = require('../controllers/CreateOfficeController')
 const { getAllOffices } = require('../controllers/getAllOffices')
@@ -65,6 +66,7 @@ router.get('/properties/active/sale', getActivePropertiesForSale);
 //GET /api/properties/active/sale?province=ProvinceName&departments=DepartmentName&country=CountryName&minPrice=1000&maxPrice=5000&currency=USD
 router.get('/properties/active/rent', getActivePropertiesForRent);
 router.get('/properties/seller/:sellerId', getPropertiesBySellerId);
+router.get('/properties/seller/true/:sellerId', getPropertiesBySellerIdTrue)
 router.get('/allOfice', getAllOffices)
 router.get('/offices/:id', getOfficeById)
 router.get('/martiller/seller/:sellerId', getMartillerBySellerId); 

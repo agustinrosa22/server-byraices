@@ -2,7 +2,7 @@
 const { Property } = require('../db').conn.models;
 
 // Definir el controlador
-const getPropertiesBySellerId = async (req, res) => {
+const getPropertiesBySellerIdTrue = async (req, res) => {
   try {
     // Obtener el sellerId de los parámetros de la URL
     const { sellerId } = req.params;
@@ -15,7 +15,8 @@ const getPropertiesBySellerId = async (req, res) => {
     // Buscar todas las propiedades relacionadas con el sellerId proporcionado y con statusProperties: true
     const properties = await Property.findAll({
       where: {
-        sellerId
+        sellerId,
+        statusProperty: true,  // Agregar condición para statusProperties
       },
     });
 
@@ -34,4 +35,4 @@ const getPropertiesBySellerId = async (req, res) => {
 };
 
 // Exportar el controlador
-module.exports = { getPropertiesBySellerId };
+module.exports = { getPropertiesBySellerIdTrue };
