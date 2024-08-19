@@ -311,6 +311,14 @@ martillerId: {
     key: 'id',
   }
 },
+    cerrado: {
+      type: DataTypes.JSON,
+      defaultValue: {
+        cierre: false,
+        precioCierre: "",
+        currencyCierre: "",
+      }
+    },
     
   });
 
