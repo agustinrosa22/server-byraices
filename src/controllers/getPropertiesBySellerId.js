@@ -17,6 +17,7 @@ const getPropertiesBySellerId = async (req, res) => {
       where: {
         sellerId
       },
+      order: [['createdAt', 'DESC']] // Ordenar por createdAt en orden descendente
     });
 
     // Si no se encuentran propiedades, devolver un mensaje
@@ -35,3 +36,4 @@ const getPropertiesBySellerId = async (req, res) => {
 
 // Exportar el controlador
 module.exports = { getPropertiesBySellerId };
+

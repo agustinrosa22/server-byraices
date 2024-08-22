@@ -12,6 +12,7 @@ const getPendingProperties = async (req, res) => {
           cierre: false
         }
       },
+      order: [['createdAt', 'DESC']] // Ordenar por createdAt en orden descendente
     });
 
     // Si no se encuentran propiedades, devolver un mensaje
