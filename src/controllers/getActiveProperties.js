@@ -2,11 +2,12 @@ const { Property } = require('../db').conn.models;
 
 const getActiveProperties = async (req, res) => {
   try {
-    // Buscar todas las propiedades que tengan "statusProperty" como true
+    // Buscar todas las propiedades que tengan "statusProperty" como true y ordenarlas por "createdAt" en orden descendente
     const activeProperties = await Property.findAll({
       where: {
         statusProperty: true
-      }
+      },
+      order: [['createdAt', 'DESC']] // Ordenar por "createdAt" en orden descendente
     });
 
     // Devolver la lista de propiedades activas
