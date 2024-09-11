@@ -317,6 +317,7 @@ martillerId: {
         cierre: false,
         precioCierre: "",
         currencyCierre: "",
+        fecha: "", // Asignar fecha actual en formato ISO
       }
     },
     
