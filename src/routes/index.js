@@ -37,6 +37,7 @@ const { getActivePropertiesDesarrollo } = require('../controllers/getActivePrope
 const { getPropertiesLuxury } = require('../controllers/getPorpertiesLuxury')
 const { deletePropertyById } = require('../controllers/deletePropertyById')
 const { getPendingProperties } = require('../controllers/getPendingProperties');
+const { getActiveMartillers } = require('../controllers/getActiveMartillers'); 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -77,6 +78,7 @@ router.get('/martiller/:id', getMartillerById)
 router.get('/properties/active/pozo', getActivePropertiesDesarrollo);
 router.get('/properties/luxury', getPropertiesLuxury); 
 router.get('/properties/pending', getPendingProperties);
+router.get('/martillers/active', getActiveMartillers);
 
 //PUT
 router.put('/properties/:id', updateProperty);
