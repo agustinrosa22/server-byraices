@@ -41,6 +41,8 @@ const { getActiveMartillers } = require('../controllers/getActiveMartillers');
 const { getActiveSellers } = require('../controllers/getActiveSellers')
 const { getInactiveSellers } = require('../controllers/getInactiveSellers')
 const { createVisita } = require('../controllers/createVisita');
+const { getAllVisitas } = require('../controllers/getAllVisitas');
+const { getVisitasByPropertyId } = require('../controllers/getVisitasByPropertyId');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -85,6 +87,8 @@ router.get('/properties/pending', getPendingProperties);
 router.get('/martillers/active', getActiveMartillers);
 router.get('/sellers/active', getActiveSellers);
 router.get('/sellers/inactive', getInactiveSellers);
+router.get('/visitas', getAllVisitas);
+router.get('/visitas/property/:propertyId', getVisitasByPropertyId);
 
 
 //PUT
