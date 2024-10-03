@@ -59,7 +59,7 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 // Destructuring para acceder a los modelos
-const { Seller, Property, Martiller, User, Franquicia, UserSeller, Office} = sequelize.models;
+const { Seller, Property, Martiller, User, Franquicia, UserSeller, Office, Visita} = sequelize.models;
 
 // Aca vendrian las relaciones
 
@@ -114,6 +114,10 @@ UserSeller.belongsTo(Office, { foreignKey: 'officeId' });
 // Relacionar propiedades a martilleros
 Martiller.hasMany(Property, { as: 'properties', foreignKey: 'martillerId' });
 Property.belongsTo(Martiller, { foreignKey: 'martillerId' });
+
+// Relacionar Property con Visita (uno a muchos)
+Property.hasMany(Visita, { as: 'visitas', foreignKey: 'propertyId' });
+Visita.belongsTo(Property, { foreignKey: 'propertyId' });
 
 
 // Exportar modelos y conexión

@@ -40,6 +40,7 @@ const { getPendingProperties } = require('../controllers/getPendingProperties');
 const { getActiveMartillers } = require('../controllers/getActiveMartillers'); 
 const { getActiveSellers } = require('../controllers/getActiveSellers')
 const { getInactiveSellers } = require('../controllers/getInactiveSellers')
+const { createVisita } = require('../controllers/createVisita');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -53,6 +54,7 @@ router.post('/seller', createUserSellerHandler);
 router.post('/login', loginController.login);
 router.post('/office', createOffice) 
 router.post('/martiller', createUserMartillerHandler) 
+router.post('/visita', createVisita) 
 
 //GET
 router.get('/properties', getAllPropertiesHandler);
