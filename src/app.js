@@ -2,6 +2,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const path = require('path');
 const routes = require('./routes/index.js');
 
 require('./db.js');
@@ -21,6 +22,11 @@ server.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   next();
 });
+
+// Configurar Express para servir archivos estáticos desde la carpeta "uploads"
+server.use(express.static('uploads'));
+server.use('/uploads', express.static((__dirname, 'uploads'))); // <-- Agrega esta línea
+
 
 server.use('/', routes);
 

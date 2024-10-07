@@ -1,10 +1,10 @@
-const { createProperty } = require('../controllers/createProperty')
+const { createProperty } = require('../controllers/createProperty');
+const upload = require('../middlewares/upload'); // Agrega esta línea para importar multer
 
 const createPropertyHandler = async (req, res) => {
     try {
         const {
             propertyType,
-            photo,
             videoLink,
             statusProperty,
             currency,
@@ -54,9 +54,15 @@ const createPropertyHandler = async (req, res) => {
             isUnderDevelopment,
         } = req.body;
 
+        // Obtener las rutas de las imágenes subidas y reemplazar \ por /
+        const photoPaths = req.files.map(file => `http://localhost:3000/${file.filename}`); // Aquí guarda 'http://localhost:3000/filename'
+
+
+
+        // Crear la propiedad en la base de datos con las rutas de las fotos
         const newProperty = await createProperty({
             propertyType,
-            photo,
+            photo: photoPaths, // Almacenamos las rutas de las fotos
             videoLink,
             statusProperty,
             currency,
@@ -99,7 +105,7 @@ const createPropertyHandler = async (req, res) => {
             documentation,
             sellerId,
             userId,
-            detailsProperty,   
+            detailsProperty,
             characteristics,
             isForSale,
             isForRent,

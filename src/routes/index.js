@@ -43,6 +43,7 @@ const { getInactiveSellers } = require('../controllers/getInactiveSellers')
 const { createVisita } = require('../controllers/createVisita');
 const { getAllVisitas } = require('../controllers/getAllVisitas');
 const { getVisitasByPropertyId } = require('../controllers/getVisitasByPropertyId');
+const upload = require('../middlewares/upload');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -51,7 +52,7 @@ const router = Router();
 // Configurar los routers
 //POST
 router.post('/user/', createUserHandler);
-router.post('/property', createPropertyHandler);
+router.post('/property', upload.array('photos', 30), createPropertyHandler);
 router.post('/seller', createUserSellerHandler);
 router.post('/login', loginController.login);
 router.post('/office', createOffice) 
