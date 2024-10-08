@@ -44,25 +44,30 @@ const createPropertyHandler = async (req, res) => {
             title,
             description,
             floorPlans,
-            documentation,
             sellerId,
             userId,
             detailsProperty,
             characteristics,
             isForSale,
             isForRent,
-            isUnderDevelopment,
+            isUnderDevelopment
         } = req.body;
 
-        // Obtener las rutas de las imágenes subidas y reemplazar \ por /
-        const photoPaths = req.files.map(file => `http://localhost:3000/${file.filename}`); // Aquí guarda 'http://localhost:3000/filename'
+        // Obtener las rutas de las fotos subidas y reemplazar \ por /
+        const photoPaths = req.files['photos'] 
+            ? req.files['photos'].map(file => `http://localhost:3000/${file.filename}`)
+            : [];
 
+        // Obtener las rutas de los archivos de documentación subidos
+        const documentPaths = req.files['documentation'] 
+            ? req.files['documentation'].map(file => `http://localhost:3000/${file.filename}`)
+            : [];
 
-
-        // Crear la propiedad en la base de datos con las rutas de las fotos
+        // Crear la propiedad en la base de datos con las rutas de fotos y documentación
         const newProperty = await createProperty({
             propertyType,
-            photo: photoPaths, // Almacenamos las rutas de las fotos
+            photo: photoPaths,         // Almacenamos las rutas de las fotos
+            documentation: documentPaths, // Almacenamos las rutas de los documentos
             videoLink,
             statusProperty,
             currency,
@@ -102,7 +107,6 @@ const createPropertyHandler = async (req, res) => {
             title,
             description,
             floorPlans,
-            documentation,
             sellerId,
             userId,
             detailsProperty,

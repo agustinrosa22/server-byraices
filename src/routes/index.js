@@ -52,11 +52,11 @@ const router = Router();
 // Configurar los routers
 //POST
 router.post('/user/', createUserHandler);
-router.post('/property', upload.array('photos', 30), createPropertyHandler);
-router.post('/seller', createUserSellerHandler);
+router.post('/property', upload, createPropertyHandler);
+router.post('/seller', upload, createUserSellerHandler);
 router.post('/login', loginController.login);
 router.post('/office', createOffice) 
-router.post('/martiller', createUserMartillerHandler) 
+router.post('/martiller', upload, createUserMartillerHandler);
 router.post('/visita', createVisita) 
 
 //GET
@@ -93,10 +93,10 @@ router.get('/visitas/property/:propertyId', getVisitasByPropertyId);
 
 
 //PUT
-router.put('/properties/:id', updateProperty);
-router.put('/sellers/:id', updateSellerById);
+router.put('/properties/:id', upload , updateProperty);
+router.put('/sellers/:id', upload , updateSellerById);
 router.put('/martiller/:id', updateMartiller);
-router.put('/seller/:id', updateSeller);
+    router.put('/seller/:id', upload , updateSeller);
 router.put('/office/:id', updateOffice);
 
 //DELETE

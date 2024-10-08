@@ -3,7 +3,18 @@ const { createUserSeller } = require('../controllers/createUserSeller');
 const createUserSellerHandler = async (req, res) => {
     try {
         const userData = req.body;
-        const seller = await createUserSeller(userData);
+
+        // Accedemos a la foto del vendedor si fue cargada
+        const photoPath = req.files['photo'] ? `http://localhost:3000/${req.files['photo'][0].filename}` : null;
+
+        // Añadimos la URL de la foto a los datos del vendedor
+        const sellerData = {
+            ...userData,
+            photo: photoPath // Incluimos la URL de la foto en los datos del vendedor
+        };
+
+        const seller = await createUserSeller(sellerData);
+
         res.status(201).json({
             success: true,
             message: 'Usuario vendedor creado exitosamente',
