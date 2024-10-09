@@ -54,8 +54,8 @@ const createPropertyHandler = async (req, res) => {
         } = req.body;
 
         // Obtener las rutas de las fotos subidas y reemplazar \ por /
-        const photoPaths = req.files['photos'] 
-            ? req.files['photos'].map(file => `http://localhost:3000/${file.filename}`)
+        const photoPaths = req.files['photo'] 
+            ? req.files['photo'].map(file => `http://localhost:3000/${file.filename}`)
             : [];
 
         // Obtener las rutas de los archivos de documentación subidos

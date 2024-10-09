@@ -16,8 +16,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage }).fields([
     { name: 'photo', maxCount: 30 },        // Acepta hasta 30 fotos
     { name: 'documentation', maxCount: 10 }, // Acepta hasta 10 archivos de documentación
-    { name: 'img', maxCount: 1 },   
-    { name: 'photo', maxCount: 1 },             
+    { name: 'img', maxCount: 1 },           // Acepta una imagen para 'img'
 ]);
 
 module.exports = upload;
