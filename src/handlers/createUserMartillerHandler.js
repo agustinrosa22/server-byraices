@@ -5,7 +5,7 @@ const createUserMartillerHandler = async (req, res) => {
         const userData = req.body;
 
         // Obtener la ruta de la imagen subida si es que se cargó una
-        const imgPath = req.files['img'] ? `http://localhost:3000/${req.files['img'][0].filename}` : null;
+        const imgPath = req.files['img'] ? `https://server.byraices.com/${req.files['img'][0].filename}` : null;
 
         // Añadir la URL de la imagen a los datos del martillero
         const martillerData = {

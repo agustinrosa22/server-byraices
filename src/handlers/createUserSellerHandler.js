@@ -5,7 +5,7 @@ const createUserSellerHandler = async (req, res) => {
         const userData = req.body;
 
         // Accedemos a la foto del vendedor si fue cargada
-        const photoPath = req.files['photo'] ? `http://localhost:3000/${req.files['photo'][0].filename}` : null;
+        const photoPath = req.files['photo'] ? `https://server.byraices.com/${req.files['photo'][0].filename}` : null;
 
         // Añadimos la URL de la foto a los datos del vendedor
         const sellerData = {

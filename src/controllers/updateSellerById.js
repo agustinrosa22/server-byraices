@@ -14,7 +14,7 @@ const updateSellerById = async (req, res) => {
         }
 
         // Obtener la ruta de la foto si fue subida
-        const photoPath = req.file ? `http://localhost:3000/${req.file.filename}` : seller.photo;
+        const photoPath = req.file ? `https://server.byraices.com/${req.file.filename}` : seller.photo;
 
         // Actualizar los campos del vendedor
         if (mail !== undefined) seller.mail = mail;

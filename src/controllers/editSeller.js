@@ -24,7 +24,7 @@ const updateSeller = async (req, res) => {
             console.log('Archivos recibidos:', req.files); // Agrega este log para ver qué archivos se reciben
     
             // Obtener la ruta de la foto si fue subida
-            const photoPath = req.files.photo ? `http://localhost:3000/uploads/${req.files.photo[0].filename}` : seller.photo;
+            const photoPath = req.files.photo ? `https://server.byraices.com/uploads/${req.files.photo[0].filename}` : seller.photo;
     
             // Actualiza los campos del vendedor
             await seller.update({

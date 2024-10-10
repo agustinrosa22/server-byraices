@@ -55,12 +55,12 @@ const createPropertyHandler = async (req, res) => {
 
         // Obtener las rutas de las fotos subidas y reemplazar \ por /
         const photoPaths = req.files['photo'] 
-            ? req.files['photo'].map(file => `http://localhost:3000/${file.filename}`)
+            ? req.files['photo'].map(file => `https://server.byraices.com/${file.filename}`)
             : [];
 
         // Obtener las rutas de los archivos de documentación subidos
         const documentPaths = req.files['documentation'] 
-            ? req.files['documentation'].map(file => `http://localhost:3000/${file.filename}`)
+            ? req.files['documentation'].map(file => `https://server.byraices.com/${file.filename}`)
             : [];
 
         // Crear la propiedad en la base de datos con las rutas de fotos y documentación

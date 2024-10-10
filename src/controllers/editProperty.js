@@ -15,7 +15,7 @@ const updateProperty = async (req, res) => {
 
         // Obtener las rutas de las fotos subidas y reemplazar \ por /
         const photoPaths = req.files && req.files.photo ? 
-            req.files.photo.map(file => `http://localhost:3000/${file.filename}`) : 
+            req.files.photo.map(file => `https://server.byraices.com/${file.filename}`) : 
             property.photo; // Mantener la foto actual si no se suben nuevas fotos
 
         // Actualizar los valores de la propiedad con los nuevos datos
