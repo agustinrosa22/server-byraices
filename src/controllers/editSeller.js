@@ -10,6 +10,7 @@ const updateSeller = async (req, res) => {
             phone_number,
             type,
             status,
+            martillerId,
         } = req.body;
     
         try {
@@ -36,6 +37,7 @@ const updateSeller = async (req, res) => {
                 photo: photoPath, // Actualizar la foto solo si se ha subido una nueva
                 type,
                 status,
+                martillerId
             });
     
             // Retorna el vendedor actualizado
