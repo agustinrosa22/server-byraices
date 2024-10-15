@@ -96,7 +96,7 @@ router.get('/visitas/property/:propertyId', getVisitasByPropertyId);
 router.put('/properties/:id', upload , updateProperty);
 router.put('/sellers/:id', upload , updateSellerById);
 router.put('/martiller/:id', updateMartiller);
-    router.put('/seller/:id', upload , updateSeller);
+router.put('/seller/:id', upload , updateSeller);
 router.put('/office/:id', updateOffice);
 
 //DELETE
