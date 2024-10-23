@@ -12,25 +12,42 @@ const getPropertiesBySellerIdTrue = async (req, res) => {
       return res.status(400).json({ success: false, message: 'sellerId is required' });
     }
 
-    // Buscar todas las propiedades relacionadas con el sellerId proporcionado y con statusProperties: true
+    // Verificar que el sellerId sea un número válido
+    if (isNaN(sellerId)) {
+      return res.status(400).json({ success: false, message: 'Invalid sellerId format. Must be a number.' });
+    }
+
+    // Buscar todas las propiedades relacionadas con el sellerId proporcionado y con statusProperty: true
     const properties = await Property.findAll({
       where: {
         sellerId,
-        statusProperty: true,  // Agregar condición para statusProperties
+        statusProperty: true,  // Asegurar que statusProperty sea true
       },
     });
 
-    // Si no se encuentran propiedades, devolver un mensaje
+    // Si no se encuentran propiedades, devolver un mensaje adecuado
     if (!properties || properties.length === 0) {
-      return res.status(404).json({ success: false, message: 'No properties found for the provided sellerId' });
+      return res.status(404).json({ 
+        success: false, 
+        message: `No properties found for sellerId ${sellerId} with statusProperty: true.` 
+      });
     }
 
     // Devolver las propiedades encontradas
-    return res.status(200).json({ success: true, message: 'Properties retrieved successfully', data: properties });
+    return res.status(200).json({ 
+      success: true, 
+      message: `Properties for sellerId ${sellerId} retrieved successfully.`,
+      data: properties
+    });
+
   } catch (error) {
-    // Manejar errores
+    // Manejar errores del servidor y devolver una respuesta más específica
     console.error('Error fetching properties by sellerId:', error);
-    return res.status(500).json({ success: false, message: 'Internal server error' });
+    return res.status(500).json({ 
+      success: false, 
+      message: 'Internal server error. Please try again later.',
+      error: error.message  // Devolver el mensaje de error para facilitar el debug
+    });
   }
 };
 

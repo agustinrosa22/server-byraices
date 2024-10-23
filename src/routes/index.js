@@ -42,7 +42,10 @@ const { getActiveSellers } = require('../controllers/getActiveSellers')
 const { getInactiveSellers } = require('../controllers/getInactiveSellers')
 const { createVisita } = require('../controllers/createVisita');
 const { getAllVisitas } = require('../controllers/getAllVisitas');
-const { getVisitasByPropertyId } = require('../controllers/getVisitasByPropertyId');
+const { getPropertiesSellId } = require('../controllers/getPropertiesSellId');
+const { getActivePropertiesId } = require('../controllers/getActivePropertiesId');
+const { getVisitasByPropertyId } = require('../controllers/getVisitasByPropertyId')
+
 const upload = require('../middlewares/upload');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -85,6 +88,8 @@ router.get('/martiller/:id', getMartillerById)
 router.get('/properties/active/pozo', getActivePropertiesDesarrollo);
 router.get('/properties/luxury', getPropertiesLuxury); 
 router.get('/properties/pending', getPendingProperties);
+router.get('/properties/idsell', getPropertiesSellId);
+router.get('/properties/activeid', getActivePropertiesId);
 router.get('/martillers/active', getActiveMartillers);
 router.get('/sellers/active', getActiveSellers);
 router.get('/sellers/inactive', getInactiveSellers);
