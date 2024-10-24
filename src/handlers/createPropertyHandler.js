@@ -1,6 +1,3 @@
-const { createProperty } = require('../controllers/createProperty');
-const upload = require('../middlewares/upload'); // Agrega esta línea para importar multer
-
 const createPropertyHandler = async (req, res) => {
     try {
         const {
@@ -53,21 +50,25 @@ const createPropertyHandler = async (req, res) => {
             isUnderDevelopment
         } = req.body;
 
-        // Obtener las rutas de las fotos subidas y reemplazar \ por /
+        // Verifica si los campos JSON están como cadenas y parsea si es necesario
+        const parsedDetailsProperty = typeof detailsProperty === 'string' ? JSON.parse(detailsProperty) : detailsProperty;
+        const parsedCharacteristics = typeof characteristics === 'string' ? JSON.parse(characteristics) : characteristics;
+        const parsedAmenities = typeof amenities === 'string' ? JSON.parse(amenities) : amenities;
+        const parsedEnvironmentsOptions = typeof environmentsOptions === 'string' ? JSON.parse(environmentsOptions) : environmentsOptions;
+        const parsedServices = typeof services === 'string' ? JSON.parse(services) : services;
+
         const photoPaths = req.files['photo'] 
             ? req.files['photo'].map(file => `https://server.byraices.com/${file.filename}`)
             : [];
 
-        // Obtener las rutas de los archivos de documentación subidos
         const documentPaths = req.files['documentation'] 
             ? req.files['documentation'].map(file => `https://server.byraices.com/${file.filename}`)
             : [];
 
-        // Crear la propiedad en la base de datos con las rutas de fotos y documentación
         const newProperty = await createProperty({
             propertyType,
-            photo: photoPaths,         // Almacenamos las rutas de las fotos
-            documentation: documentPaths, // Almacenamos las rutas de los documentos
+            photo: photoPaths,
+            documentation: documentPaths,
             videoLink,
             statusProperty,
             currency,
@@ -97,20 +98,20 @@ const createPropertyHandler = async (req, res) => {
             neighborhood,
             privateNeighborhood,
             propertyState,
-            environmentsOptions,
+            environmentsOptions: parsedEnvironmentsOptions,
             rooms,
             bathrooms,
             toilettes,
             garages,
-            amenities,
-            services,
+            amenities: parsedAmenities,
+            services: parsedServices,
             title,
             description,
             floorPlans,
             sellerId,
             userId,
-            detailsProperty,
-            characteristics,
+            detailsProperty: parsedDetailsProperty,
+            characteristics: parsedCharacteristics,
             isForSale,
             isForRent,
             isUnderDevelopment
