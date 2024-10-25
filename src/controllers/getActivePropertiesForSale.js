@@ -1,12 +1,10 @@
-const { Op } = require('sequelize');
+const { Op, literal } = require('sequelize');
 const { Property } = require('../db').conn.models;
 
 const getActivePropertiesForSale = async (req, res) => {
   try {
-    // Obtener los parámetros de consulta
-    const { province, departments, country, minPrice, maxPrice, currency } = req.query;
+    const { province, departments, country, minPrice, maxPrice, currency, propertyType  } = req.query;
 
-    // Construir las condiciones de búsqueda
     let conditions = {
       statusProperty: true,
       isForSale: true
@@ -17,20 +15,30 @@ const getActivePropertiesForSale = async (req, res) => {
     }
 
     if (departments) {
-      conditions.departments = departments;
+      const formattedDepartments = departments
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/\s+/g, '%');
+      conditions.departments = { [Op.iLike]: `%${formattedDepartments}%` };
     }
 
     if (country) {
       conditions.country = country;
     }
 
+    // Filtrar por rango de precios usando `parseFloat` y redondeo
     if (minPrice || maxPrice) {
-      conditions.price = {};
-      if (minPrice) {
-        conditions.price[Op.gte] = minPrice;
-      }
-      if (maxPrice) {
-        conditions.price[Op.lte] = maxPrice;
+      const min = minPrice ? Math.round(parseFloat(minPrice.replace(/\./g, ''))) : null;
+      const max = maxPrice ? Math.round(parseFloat(maxPrice.replace(/\./g, ''))) : null;
+
+      // Usar Sequelize.literal para las condiciones de rango en `price`
+      if (min !== null && max !== null) {
+        conditions.price = literal(`CAST("price" AS NUMERIC) BETWEEN ${min} AND ${max}`);
+      } else if (min !== null) {
+        conditions.price = literal(`CAST("price" AS NUMERIC) >= ${min}`);
+      } else if (max !== null) {
+        conditions.price = literal(`CAST("price" AS NUMERIC) <= ${max}`);
       }
     }
 
@@ -38,19 +46,21 @@ const getActivePropertiesForSale = async (req, res) => {
       conditions.currency = currency;
     }
 
-    // Buscar todas las propiedades que cumplan con las condiciones
+     // Filtrar por `propertyType` si está presente
+     if (propertyType) {
+      conditions.propertyType = propertyType;
+    }
+
     const activePropertiesForSale = await Property.findAll({
       where: conditions
     });
 
-    // Devolver la lista de propiedades activas para la venta
     return res.status(200).json(activePropertiesForSale);
   } catch (error) {
-    // Manejar errores
     console.error("Error al obtener las propiedades activas para la venta:", error);
     return res.status(500).json({ message: "Error interno del servidor" });
   }
-}
+};
 
 module.exports = {
   getActivePropertiesForSale
