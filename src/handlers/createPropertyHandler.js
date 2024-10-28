@@ -1,3 +1,5 @@
+const { createProperty } = require('../controllers/createProperty');
+
 const createPropertyHandler = async (req, res) => {
     try {
         const {
