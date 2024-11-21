@@ -45,6 +45,10 @@ const { getAllVisitas } = require('../controllers/getAllVisitas');
 const { getPropertiesSellId } = require('../controllers/getPropertiesSellId');
 const { getActivePropertiesId } = require('../controllers/getActivePropertiesId');
 const { getVisitasByPropertyId } = require('../controllers/getVisitasByPropertyId')
+const { formatPricesInDatabase } = require('../controllers/formatPricesInDatabase');
+const { getClosedPropertiesBySellerId } = require('../controllers/getClosedPropertiesBySellerId');
+const { getClosedPropertiesByMartillerId } = require('../controllers/getClosedPropertiesByMartillerId');
+
 
 const upload = require('../middlewares/upload');
 // Importar todos los routers;
@@ -95,6 +99,8 @@ router.get('/sellers/active', getActiveSellers);
 router.get('/sellers/inactive', getInactiveSellers);
 router.get('/visitas', getAllVisitas);
 router.get('/visitas/property/:propertyId', getVisitasByPropertyId);
+router.get('/properties/closed/:sellerId', getClosedPropertiesBySellerId);
+router.get('/properties/martiller/closed/:martillerId', getClosedPropertiesByMartillerId);
 
 
 //PUT
@@ -103,6 +109,7 @@ router.put('/sellers/:id', upload , updateSellerById);
 router.put('/martiller/:id', upload , updateMartiller);
 router.put('/seller/:id', upload , updateSeller);
 router.put('/office/:id', updateOffice);
+router.put('/format-prices', formatPricesInDatabase);
 
 //DELETE
 router.delete('/property/delete/:id', deletePropertyById);
