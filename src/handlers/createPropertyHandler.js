@@ -2,6 +2,8 @@ const { createProperty } = require('../controllers/createProperty');
 
 const createPropertyHandler = async (req, res) => {
     try {
+
+        // console.log('Datos recibidos en el servidor:', req.body);
         const {
             propertyType,
             videoLink,
@@ -44,6 +46,7 @@ const createPropertyHandler = async (req, res) => {
             description,
             floorPlans,
             sellerId,
+            martillerId,
             userId,
             detailsProperty,
             characteristics,
@@ -111,12 +114,14 @@ const createPropertyHandler = async (req, res) => {
             description,
             floorPlans,
             sellerId,
+            martillerId,
             userId,
             detailsProperty: parsedDetailsProperty,
             characteristics: parsedCharacteristics,
             isForSale,
             isForRent,
-            isUnderDevelopment
+            isUnderDevelopment,
+          
         });
 
         res.status(201).json({

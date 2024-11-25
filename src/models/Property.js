@@ -311,6 +311,14 @@ martillerId: {
     key: 'id',
   }
 },
+sellerId: {
+  type: DataTypes.INTEGER,
+  allowNull: true,  // Permite que este campo sea nulo
+  references: {
+    model: 'Sellers',
+    key: 'id',
+  },
+},
     cerrado: {
       type: DataTypes.JSON,
       defaultValue: {
