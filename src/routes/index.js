@@ -6,6 +6,7 @@ const { getPropertyByIdHandler } = require('../handlers/getPropertyByIdHandler')
 const { getPropertyByTitleHandler } = require('../handlers/getPropertyByTitleHandlers')
 const { createUserSellerHandler } = require('../handlers/createUserSellerHandler')
 const { getAllSellersHandler } =require('../handlers/getAllSellersHandler')
+const { getAllSellers } = require('../controllers/getAllSellers')
 const { getAllUsersHandler } = require('../handlers/getAllUsersHandler')
 const { getUserByIdHandler } = require('../handlers/getUserByIdHandler')
 const { getPropertyByTypeHandler } = require('../handlers/getPropertyByTipeHandler')
@@ -72,7 +73,7 @@ router.get('/property/:id', getPropertyByIdHandler);
 router.get('/property/name/:title', getPropertyByTitleHandler);
 router.get('/property/type/:propertyType', getPropertyByTypeHandler);
 router.get('/property/location/:location', getPropertyByLocationHandler);
-router.get('/sellers', getAllSellersHandler);
+router.get('/sellers', getAllSellers);
 router.get('/seller/:id', getSellerByIdHandler);
 router.get('/users', getAllUsersHandler);
 router.get('/user/:id', getUserByIdHandler);
