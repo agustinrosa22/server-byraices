@@ -17,12 +17,18 @@ const getActivePropertiesForSale = async (req, res) => {
     if (departments) {
       const formattedDepartments = departments
         .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[\u0300-\u036f]/g, "") // Elimina acentos
         .toLowerCase()
-        .replace(/\s+/g, '%');
-      conditions.departments = { [Op.iLike]: `%${formattedDepartments}%` };
+        .replace(/\s+/g, '%'); // Reemplaza espacios por %
+    
+      // Normalizamos los datos en la consulta para manejar acentos y espacios
+      conditions.departments = {
+        [Op.or]: [
+          { [Op.iLike]: `%${formattedDepartments}%` }, // Búsqueda sin acentos
+          { [Op.iLike]: `%${departments}%` }           // Búsqueda con el formato original
+        ]
+      };
     }
-
     if (country) {
       conditions.country = country;
     }
