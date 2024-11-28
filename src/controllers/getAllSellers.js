@@ -2,8 +2,18 @@ const { Seller } = require('../db').conn.models;
 
 const getAllSellers = async (req, res) => {
   try {
-    // Obtener todos los vendedores
-    const sellers = await Seller.findAll();
+    const { status } = req.query; // Extrae el parámetro de consulta 'status' de la URL
+
+    // Validación y transformación del parámetro 'status'
+    let filter = {};
+    if (status === 'true') {
+      filter.status = true;
+    } else if (status === 'false') {
+      filter.status = false;
+    }
+
+    // Obtener los vendedores filtrados (si no se pasa 'status', trae todos)
+    const sellers = await Seller.findAll({ where: filter });
 
     if (!sellers || sellers.length === 0) {
       return res.status(404).json({
