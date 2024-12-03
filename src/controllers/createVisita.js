@@ -3,7 +3,19 @@ require('dotenv').config();
 
 // Controlador para crear una visita
 const createVisita = async (req, res) => {
-  const { visitante, agente, fecha, descripcion, propertyId } = req.body;
+  const { 
+    visitante, 
+    agente, 
+    fecha, 
+    descripcion, 
+    propertyId, 
+    gusto = { yes: false, no: false }, 
+    calificacionUbicacion = { excelente: false, buena: false, regular: false, mala: false },
+    espaciosYComodidades = { muySatisfactorio: false, satisfactorio: false, insatisfactorio: false },
+    calidadPrecio = { excelente: false, buena: false, regular: false, mala: false },
+    general = { excelente: false, muyBuena: false, buena: false, regular: false, mala: false },
+    comprar = { yes: false, no: false, maybe: false } 
+  } = req.body;
 
   try {
     // Crear una nueva visita
@@ -12,7 +24,13 @@ const createVisita = async (req, res) => {
       agente,
       fecha,
       descripcion,
-      propertyId,  // Asociamos la visita a una propiedad existente
+      propertyId, // Asociamos la visita a una propiedad existente
+      gusto,
+      calificacionUbicacion,
+      espaciosYComodidades,
+      calidadPrecio,
+      general,
+      comprar,
     });
 
     // Responder con la visita creada
