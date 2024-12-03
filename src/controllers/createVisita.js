@@ -15,7 +15,9 @@ const createVisita = async (req, res) => {
     espaciosYComodidades = { muySatisfactorio: false, satisfactorio: false, insatisfactorio: false },
     calidadPrecio = { excelente: false, buena: false, regular: false, mala: false },
     general = { excelente: false, muyBuena: false, buena: false, regular: false, mala: false },
-    comprar = { yes: false, no: false, maybe: false } 
+    comprar = { yes: false, no: false}, 
+    verOtras = { yes: false, no: false, maybe: false }, 
+    
   } = req.body;
 
   try {

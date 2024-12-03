@@ -88,7 +88,7 @@ module.exports = (sequelize) => {
         no: false,
       },
     },
-    comprar: {
+    verOtras: {
       type: DataTypes.JSON, // Usamos JSON para guardar yes y no
       allowNull: false,
       defaultValue: {
