@@ -35,6 +35,7 @@ const createVisita = async (req, res) => {
       calidadPrecio,
       general,
       comprar,
+      verOtras
     });
 
     // Responder con la visita creada
