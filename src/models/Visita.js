@@ -33,6 +33,16 @@ module.exports = (sequelize) => {
         no: false,
       },
     },
+    estado: {
+      type: DataTypes.JSON, // Usamos JSON para guardar las opciones de calificación
+      allowNull: false,
+      defaultValue: {
+        excelente: false,
+        buena: false,
+        regular: false,
+        mala: false,
+      },
+    },
     calificacionUbicacion: {
       type: DataTypes.JSON, // Usamos JSON para guardar las opciones de calificación
       allowNull: false,

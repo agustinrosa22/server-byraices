@@ -11,6 +11,7 @@ const createVisita = async (req, res) => {
     propertyId, 
     gusto = { yes: false, no: false }, 
     calificacionUbicacion = { excelente: false, buena: false, regular: false, mala: false },
+    estado = { excelente: false, buena: false, regular: false, mala: false },
     espaciosYComodidades = { muySatisfactorio: false, satisfactorio: false, insatisfactorio: false },
     calidadPrecio = { excelente: false, buena: false, regular: false, mala: false },
     general = { excelente: false, muyBuena: false, buena: false, regular: false, mala: false },
@@ -24,6 +25,7 @@ const createVisita = async (req, res) => {
       agente,
       fecha,
       descripcion,
+      estado,
       propertyId, // Asociamos la visita a una propiedad existente
       gusto,
       calificacionUbicacion,
