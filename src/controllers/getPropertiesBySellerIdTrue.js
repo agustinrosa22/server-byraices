@@ -22,6 +22,7 @@ const getPropertiesBySellerIdTrue = async (req, res) => {
       where: {
         sellerId,
         statusProperty: true,  // Asegurar que statusProperty sea true
+        'cerrado,cierre': true
       },
     });
 
