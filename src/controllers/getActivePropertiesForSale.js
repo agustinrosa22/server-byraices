@@ -8,7 +8,7 @@ const getActivePropertiesForSale = async (req, res) => {
     let conditions = {
       statusProperty: true,
       isForSale: true,
-      'cerrado.cierre': true
+      'cerrado.cierre': false
     };
 
     if (province) {
