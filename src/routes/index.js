@@ -51,12 +51,20 @@ const { getClosedPropertiesBySellerId } = require('../controllers/getClosedPrope
 const { getClosedPropertiesByMartillerId } = require('../controllers/getClosedPropertiesByMartillerId');
 
 
+const { createRental } = require('../controllers/createRental');
+const { getAllRentals } = require('../controllers/getAllRentals');
+const { getRentalById } = require('../controllers/getRentalById');
+const { updateRental } = require('../controllers/updateRental');
+const { deleteRental } = require('../controllers/deleteRental');
+
 const upload = require('../middlewares/upload');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
 
+
 const router = Router();
+
 // Configurar los routers
 //POST
 router.post('/user/', createUserHandler);
@@ -66,6 +74,7 @@ router.post('/login', loginController.login);
 router.post('/office', createOffice) 
 router.post('/martiller', upload, createUserMartillerHandler);
 router.post('/visita', createVisita) 
+router.post('/rental', createRental);
 
 //GET
 router.get('/properties', getAllPropertiesHandler);
@@ -102,6 +111,8 @@ router.get('/visitas', getAllVisitas);
 router.get('/visitas/property/:propertyId', getVisitasByPropertyId);
 router.get('/properties/closed/:sellerId', getClosedPropertiesBySellerId);
 router.get('/properties/martiller/closed/:martillerId', getClosedPropertiesByMartillerId);
+router.get('/rental', getAllRentals);
+router.get('/rental/:id', getRentalById);
 
 
 //PUT
@@ -111,8 +122,10 @@ router.put('/martiller/:id', upload , updateMartiller);
 router.put('/seller/:id', upload , updateSeller);
 router.put('/office/:id', updateOffice);
 router.put('/format-prices', formatPricesInDatabase);
+router.put('/rental/:id', updateRental);
 
 //DELETE
 router.delete('/property/delete/:id', deletePropertyById);
+router.delete('/rental/:id', deleteRental);
 
 module.exports = router;
