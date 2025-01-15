@@ -6,7 +6,8 @@ const getActivePropertiesForRent = async (req, res) => {
     const activePropertiesForRent = await Property.findAll({
       where: {
         statusProperty: true,
-        isForRent: true
+        isForRent: true,
+        'cerrado.cierre': false
       }
     });
 

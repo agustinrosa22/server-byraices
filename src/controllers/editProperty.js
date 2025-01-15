@@ -1,8 +1,8 @@
 const { Property } = require('../db').conn.models;
 
 const updateProperty = async (req, res) => {
-    const { id } = req.params; // Obtener el ID de la propiedad a editar
-    const newData = req.body; // Obtener los nuevos datos de la propiedad desde el cuerpo de la solicitud
+    const { id } = req.params; // ID de la propiedad
+    const { newPhotosOrder, photosToAdd, photosToRemove, ...newData } = req.body; // Desestructuración para manipular fotos
 
     try {
         // Buscar la propiedad por su ID en la base de datos
@@ -13,15 +13,34 @@ const updateProperty = async (req, res) => {
             return res.status(404).json({ message: "Propiedad no encontrada" });
         }
 
-        // Obtener las rutas de las fotos subidas y reemplazar \ por /
-        const photoPaths = req.files && req.files.photo ? 
-            req.files.photo.map(file => `https://server.byraices.com/${file.filename}`) : 
-            property.photo; // Mantener la foto actual si no se suben nuevas fotos
+        // Inicializar el array de fotos actual
+        let updatedPhotos = property.photo || [];
+
+        // Reordenar fotos si se proporciona un nuevo orden
+        if (newPhotosOrder) {
+            updatedPhotos = newPhotosOrder;
+        }
+
+        // Agregar nuevas fotos
+        if (photosToAdd && Array.isArray(photosToAdd)) {
+            updatedPhotos.push(...photosToAdd);
+        }
+
+        // Eliminar fotos específicas
+        if (photosToRemove && Array.isArray(photosToRemove)) {
+            updatedPhotos = updatedPhotos.filter(photo => !photosToRemove.includes(photo));
+        }
+
+        // Si se suben nuevas fotos desde archivos
+        if (req.files && req.files.photo) {
+            const uploadedPhotoPaths = req.files.photo.map(file => `https://server.byraices.com/${file.filename}`);
+            updatedPhotos.push(...uploadedPhotoPaths);
+        }
 
         // Actualizar los valores de la propiedad con los nuevos datos
         await property.update({
-            ...newData,
-            photo: photoPaths // Actualizar la propiedad con las nuevas fotos
+            ...newData, // Otros datos de la propiedad
+            photo: updatedPhotos // Actualizar el array de fotos
         });
 
         // Devolver una respuesta con el objeto actualizado
