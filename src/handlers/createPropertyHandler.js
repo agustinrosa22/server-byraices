@@ -52,7 +52,10 @@ const createPropertyHandler = async (req, res) => {
             characteristics,
             isForSale,
             isForRent,
-            isUnderDevelopment
+            isUnderDevelopment,
+            ownerName,
+            ownerPhone,
+            ownerEmail,
         } = req.body;
 
         // Verifica si los campos JSON están como cadenas y parsea si es necesario
@@ -121,7 +124,9 @@ const createPropertyHandler = async (req, res) => {
             isForSale,
             isForRent,
             isUnderDevelopment,
-          
+            ownerName,
+            ownerPhone,
+            ownerEmail,
         });
 
         res.status(201).json({

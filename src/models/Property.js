@@ -319,6 +319,18 @@ sellerId: {
     key: 'id',
   },
 },
+ownerName: {
+      type: DataTypes.STRING,
+      allowNull: true, // Permite que sea nulo
+    },
+    ownerPhone: {
+      type: DataTypes.STRING,
+      allowNull: true, // Permite que sea nulo
+    },
+    ownerEmail: {
+      type: DataTypes.STRING,
+      allowNull: true, // Permite que sea nulo
+    },
     cerrado: {
       type: DataTypes.JSON,
       defaultValue: {
@@ -326,6 +338,8 @@ sellerId: {
         precioCierre: "",
         currencyCierre: "",
         fecha: "", // Asignar fecha actual en formato ISO
+        soldByAgent: true, // Nuevo campo booleano
+        soldByAgency: "", // Nuevo campo booleano
       }
     },
     

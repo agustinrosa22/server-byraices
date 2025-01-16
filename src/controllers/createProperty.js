@@ -52,6 +52,9 @@ const createProperty = async ({
     isForSale,
     isForRent,
     isUnderDevelopment,
+    ownerName,
+    ownerPhone,
+    ownerEmail,
 }) => {
     const created = await Property.create({
         propertyType,
@@ -103,7 +106,10 @@ const createProperty = async ({
         characteristics,
         isForSale,
         isForRent,
-        isUnderDevelopment
+        isUnderDevelopment,
+        ownerName,
+        ownerPhone,
+        ownerEmail,
     });
     return created;
 };
