@@ -1,9 +1,9 @@
-const { Property } = require('../db').conn.models;
+const { Property, Op } = require('../db').conn.models;
 
 const getActiveProperties = async (req, res) => {
   try {
     // Extraer parámetros de consulta
-    const { cerrado, orderBy } = req.query;
+    const { cerrado, orderBy, search } = req.query;
 
     // Configurar filtros dinámicos
     const whereCondition = {};
@@ -18,6 +18,14 @@ const getActiveProperties = async (req, res) => {
 
     // Filtro para propiedades activas
     whereCondition.statusProperty = true;
+
+    // Filtro de búsqueda (search)
+    if (search) {
+      // Asegúrate de que search es un número si es que buscas por ID
+      if (!isNaN(search)) {
+        whereCondition.id = parseInt(search);  // Buscar por ID (si es numérico)
+      } 
+    }
 
     // Ordenar por "updatedAt" o "createdAt"
     if (orderBy === 'updatedAt') {
