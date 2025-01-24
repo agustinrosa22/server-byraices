@@ -1,10 +1,12 @@
 const { Visita } = require('../db').conn.models;
 
-// Obtener todas las visitas
+// Obtener todas las visitas ordenadas por la propiedad "fecha"
 const getAllVisitas = async (req, res) => {
   try {
-    // Traer todas las visitas
-    const visitas = await Visita.findAll();
+    // Traer todas las visitas y ordenarlas por la propiedad "fecha" (las más recientes primero)
+    const visitas = await Visita.findAll({
+      order: [['fecha', 'DESC']], // Ordenar por "fecha" en orden descendente
+    });
 
     // Si hay visitas, devolverlas con status 200
     if (visitas.length > 0) {
