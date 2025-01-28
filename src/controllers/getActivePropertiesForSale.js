@@ -3,7 +3,7 @@ const { Property } = require('../db').conn.models;
 
 const getActivePropertiesForSale = async (req, res) => {
   try {
-    const { province, departments, country, minPrice, maxPrice, currency, propertyType  } = req.query;
+    const { province, departments, country, minPrice, maxPrice, currency, propertyType, page = 1 } = req.query;
 
     let conditions = {
       statusProperty: true,
@@ -11,6 +11,7 @@ const getActivePropertiesForSale = async (req, res) => {
       'cerrado.cierre': false
     };
 
+    // Filtrado por ubicación
     if (province) {
       conditions.province = province;
     }
@@ -18,28 +19,26 @@ const getActivePropertiesForSale = async (req, res) => {
     if (departments) {
       const formattedDepartments = departments
         .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "") // Elimina acentos
+        .replace(/[\u0300-\u036f]/g, "")
         .toLowerCase()
-        .replace(/\s+/g, '%'); // Reemplaza espacios por %
-    
-      // Normalizamos los datos en la consulta para manejar acentos y espacios
+        .replace(/\s+/g, '%');
       conditions.departments = {
         [Op.or]: [
-          { [Op.iLike]: `%${formattedDepartments}%` }, // Búsqueda sin acentos
-          { [Op.iLike]: `%${departments}%` }           // Búsqueda con el formato original
+          { [Op.iLike]: `%${formattedDepartments}%` },
+          { [Op.iLike]: `%${departments}%` }
         ]
       };
     }
+
     if (country) {
       conditions.country = country;
     }
 
-    // Filtrar por rango de precios usando `parseFloat` y redondeo
+    // Filtrar por rango de precios
     if (minPrice || maxPrice) {
       const min = minPrice ? Math.round(parseFloat(minPrice.replace(/\./g, ''))) : null;
       const max = maxPrice ? Math.round(parseFloat(maxPrice.replace(/\./g, ''))) : null;
 
-      // Usar Sequelize.literal para las condiciones de rango en `price`
       if (min !== null && max !== null) {
         conditions.price = literal(`CAST("price" AS NUMERIC) BETWEEN ${min} AND ${max}`);
       } else if (min !== null) {
@@ -53,16 +52,26 @@ const getActivePropertiesForSale = async (req, res) => {
       conditions.currency = currency;
     }
 
-     // Filtrar por `propertyType` si está presente
-     if (propertyType) {
+    if (propertyType) {
       conditions.propertyType = propertyType;
     }
 
-    const activePropertiesForSale = await Property.findAll({
-      where: conditions
+    // Paginación: limit y offset
+    const limit = 6; // Número de propiedades por página
+    const offset = (page - 1) * limit; // Calcular el desplazamiento
+
+    const { count, rows: properties } = await Property.findAndCountAll({
+      where: conditions,
+      limit,
+      offset
     });
 
-    return res.status(200).json(activePropertiesForSale);
+    // Devolver las propiedades junto con los datos de paginación
+    return res.status(200).json({
+      properties,
+      totalPages: Math.ceil(count / limit),
+      currentPage: parseInt(page)
+    });
   } catch (error) {
     console.error("Error al obtener las propiedades activas para la venta:", error);
     return res.status(500).json({ message: "Error interno del servidor" });
