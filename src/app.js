@@ -15,7 +15,7 @@ server.name = 'API';
 
 // 🔹 Habilita CORS para permitir peticiones desde tu frontend
 server.use(cors({ 
-  origin: 'http://localhost:3001', // Especifica el dominio del frontend
+  origin: ['http://localhost:3001', 'https://redbyraices.com', 'https://www.redbyraices.com','https://byraices.com', 'https://www.byraices.com'], // Agrega los dominios permitidos // Especifica el dominio del frontend
   credentials: true, // Permitir envío de cookies y headers de autenticación
   methods: 'GET, POST, OPTIONS, PUT, DELETE',
   allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
@@ -25,7 +25,7 @@ server.use(bodyParser.json({ limit: '50mb' }));
 server.use(cookieParser());
 server.use(morgan('dev'));
 server.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*'); // update to match the domain you will make the request from
+  // res.header('Access-Control-Allow-Origin', '*'); // update to match the domain you will make the request from
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
