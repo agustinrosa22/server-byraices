@@ -3,6 +3,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const path = require('path');
+const cors = require('cors');
 const routes = require('./routes/index.js');
 
 require('./db.js');
@@ -11,6 +12,14 @@ const server = express();
 
 server.name = 'API';
 
+
+// 🔹 Habilita CORS para permitir peticiones desde tu frontend
+server.use(cors({ 
+  origin: 'http://localhost:3001', // Especifica el dominio del frontend
+  credentials: true, // Permitir envío de cookies y headers de autenticación
+  methods: 'GET, POST, OPTIONS, PUT, DELETE',
+  allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+}));
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(bodyParser.json({ limit: '50mb' }));
 server.use(cookieParser());
