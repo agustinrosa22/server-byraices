@@ -345,6 +345,8 @@ ownerName: {
         sellerCommision: "",
         officeComission: "",
         totalComission: "",
+        franquiciaComission: "",
+        martillerComission: "",
       }
     },
     
