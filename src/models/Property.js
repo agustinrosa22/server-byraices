@@ -340,6 +340,11 @@ ownerName: {
         fecha: "", // Asignar fecha actual en formato ISO
         soldByAgent: true, // Nuevo campo booleano
         soldByAgency: "", // Nuevo campo booleano
+        buyingTip: false,
+        selleringTip: false,
+        sellerCommision: "",
+        officeComission: "",
+        totalComission: "",
       }
     },
     

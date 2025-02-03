@@ -36,6 +36,11 @@ module.exports = (sequelize) => {
       allowNull: false,
       defaultValue: true,
     },
+    rank: {  // 📌 Nuevo campo para la jerarquía
+      type: DataTypes.ENUM("Agente BY", "Middle BY", "Top BY"),
+      allowNull: false,
+      defaultValue: "Agente BY",
+    },
   });
 
   return Seller;
