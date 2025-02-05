@@ -49,7 +49,7 @@ const { getVisitasByPropertyId } = require('../controllers/getVisitasByPropertyI
 const { formatPricesInDatabase } = require('../controllers/formatPricesInDatabase');
 const { getClosedPropertiesBySellerId } = require('../controllers/getClosedPropertiesBySellerId');
 const { getClosedPropertiesByMartillerId } = require('../controllers/getClosedPropertiesByMartillerId');
-
+const { getClosedProperties } = require('../controllers/getClosedProperties')
 
 const { createRental } = require('../controllers/createRental');
 const { getAllRentals } = require('../controllers/getAllRentals');
@@ -109,6 +109,7 @@ router.get('/sellers/active', getActiveSellers);
 router.get('/sellers/inactive', getInactiveSellers);
 router.get('/visitas', getAllVisitas);
 router.get('/visitas/property/:propertyId', getVisitasByPropertyId);
+router.get('/properties/closed', getClosedProperties);
 router.get('/properties/closed/:sellerId', getClosedPropertiesBySellerId);
 router.get('/properties/martiller/closed/:martillerId', getClosedPropertiesByMartillerId);
 router.get('/rental', getAllRentals);
