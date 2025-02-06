@@ -120,17 +120,20 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
     },
     propertyState: {
-      type: DataTypes.JSON,
-      defaultValue: {
-        aEstrenar: false,
-        enConstruccion: false,
-        refaccionado: false,
-        aRefaccionar: false,
-        excelente: false,
-        muyBueno: false,
-        bueno: false,
-        regular: false,
-      },
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        isIn: [[
+          "aEstrenar",
+          "enConstruccion",
+          "refaccionado",
+          "aRefaccionar",
+          "excelente",
+          "muyBueno",
+          "bueno",
+          "regular"
+        ]]
+      }
     },
     title: {
       type: DataTypes.STRING,
@@ -351,6 +354,7 @@ ownerName: {
     },
     cantidad: {
       type: DataTypes.STRING,
+      defaultValue: "1"
     },
     
   });
