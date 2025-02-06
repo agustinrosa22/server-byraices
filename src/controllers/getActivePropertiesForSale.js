@@ -57,7 +57,7 @@ const getActivePropertiesForSale = async (req, res) => {
     }
 
     // Paginación: limit y offset
-    const limit = 6; // Número de propiedades por página
+    const limit = 10; // Número de propiedades por página
     const offset = (page - 1) * limit; // Calcular el desplazamiento
 
     const { count, rows: properties } = await Property.findAndCountAll({

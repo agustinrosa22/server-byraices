@@ -56,6 +56,7 @@ const createPropertyHandler = async (req, res) => {
             ownerName,
             ownerPhone,
             ownerEmail,
+            cantidad
         } = req.body;
 
         // Verifica si los campos JSON están como cadenas y parsea si es necesario
@@ -127,6 +128,7 @@ const createPropertyHandler = async (req, res) => {
             ownerName,
             ownerPhone,
             ownerEmail,
+            cantidad
         });
 
         res.status(201).json({

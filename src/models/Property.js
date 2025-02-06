@@ -349,6 +349,9 @@ ownerName: {
         martillerComission: "",
       }
     },
+    cantidad: {
+      type: DataTypes.STRING,
+    },
     
   });
 
